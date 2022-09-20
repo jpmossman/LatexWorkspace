@@ -1,3 +1,4 @@
-trash/*
-out/*
+trash
+out
+src
 *.tex

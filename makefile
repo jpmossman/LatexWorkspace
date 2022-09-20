@@ -1,13 +1,13 @@
 ###############################################################################
 # Variables
 ###############################################################################
-TEXES := $(wildcard *.tex) # All .tex files
-PDFS := $(TEXES:%.tex=out/%.pdf) # All output .pdf files
+TEXES := $(wildcard src/*.tex) # All .tex files
+PDFS := $(TEXES:src/%.tex=out/%.pdf) # All output .pdf files
 
 ###############################################################################
 # Recipes
 ###############################################################################
-.PHONY: all
+.PHONY: all clean
 
 all: $(PDFS)
 
@@ -15,6 +15,9 @@ out/%.pdf: trash/%.pdf
 	mkdir -p out
 	cp trash/$*.pdf out/$*.pdf
 
-trash/%.pdf: %.tex
+trash/%.pdf: src/%.tex
 	mkdir -p trash
 	latexmk $^ -pdf -outdir=trash
+
+clean:
+	rm -rf out/* trash/*
