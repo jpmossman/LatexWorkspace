@@ -11,6 +11,8 @@ PDFS := $(TEXES:src/%.tex=out/%.pdf) # All output .pdf files
 
 all: $(PDFS)
 
+# Making and placing the output pdfs is a two step process
+# 1) compile it in the auxilliary directory "trash", and copy it to out/
 out/%.pdf: trash/%.pdf
 	mkdir -p out
 	cp trash/$*.pdf out/$*.pdf
